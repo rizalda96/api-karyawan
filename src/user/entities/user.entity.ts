@@ -29,6 +29,30 @@ export class UserEntity {
   })
   password: string;
 
+  @Column({
+    type: 'boolean',
+    name: 'is_verify',
+    nullable: false,
+    default: () => 'false',
+  })
+  is_verify: boolean;
+
+  @Column({
+    type: 'boolean',
+    name: 'is_active',
+    nullable: false,
+    default: () => 'false',
+  })
+  is_active: boolean;
+
+  @Column({
+    type: 'integer',
+    name: 'code',
+    nullable: true,
+    comment: '4 digit code for email confirmation',
+  })
+  code?: number | null;
+
   @CreateDateColumn()
   @Column({
     type: 'timestamp',

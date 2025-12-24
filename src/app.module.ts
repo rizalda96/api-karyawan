@@ -9,12 +9,15 @@ import { UserModule } from './user/user.module';
 import { KaryawanModule } from './karyawan/karyawan.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/guard/auth.guard';
+import mailConfig from './config/mail/mail.config';
+import { MailerModule } from './mailer/mailer.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [appConfig],
+      load: [appConfig, mailConfig],
       envFilePath: ['.env'],
     }),
     TypeOrmModule.forRoot({
@@ -35,6 +38,8 @@ import { AuthGuard } from './auth/guard/auth.guard';
     AuthModule,
     UserModule,
     KaryawanModule,
+    MailerModule,
+    MailModule,
   ],
   // controllers: [AppController],
   providers: [
