@@ -95,7 +95,8 @@ export class AuthService {
       );
       if (!user) throw new UnauthorizedException('Invalid token');
 
-      if (user.code !== code) throw new UnprocessableEntityException('Invalid code');
+      if (user.code !== code)
+        throw new UnprocessableEntityException('Invalid code');
 
       await this.userService.updateToVerifyAndActive(user.id);
     } catch (error) {
@@ -165,9 +166,15 @@ export class AuthService {
     email: UserEntity['email'];
   }): Promise<any> {
     const [token, refreshToken] = await Promise.all([
-      await this.jwtService.signAsync({
-        id: data.id,
-      }),
+      await this.jwtService.signAsync(
+        {
+          id: data.id,
+        },
+        {
+          secret: process.env.AUTH_SECRET || 'secret',
+          expiresIn: '3d',
+        },
+      ),
       await this.jwtService.signAsync(
         {
           email: data.email,
