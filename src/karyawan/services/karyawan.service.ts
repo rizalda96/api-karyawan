@@ -102,4 +102,13 @@ export class KaryawanService {
     if (!karyawan) throw new NotFoundException('Karyawan not found');
     await this.karyawanRepo.remove(karyawan);
   }
+
+  async countByGender(): Promise<{ jenis_kelamin: string; total: number }[]> {
+    return await this.karyawanRepo
+      .createQueryBuilder('karyawan')
+      .select('karyawan.jenis_kelamin', 'jenis_kelamin')
+      .addSelect('COUNT(*)', 'total')
+      .groupBy('karyawan.jenis_kelamin')
+      .getRawMany();
+  }
 }

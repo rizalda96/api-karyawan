@@ -12,6 +12,7 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import mailConfig from './config/mail/mail.config';
 import { MailerModule } from './mailer/mailer.module';
 import { MailModule } from './mail/mail.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { MailModule } from './mail/mail.module';
     KaryawanModule,
     MailerModule,
     MailModule,
+    DashboardModule,
   ],
   // controllers: [AppController],
   providers: [
