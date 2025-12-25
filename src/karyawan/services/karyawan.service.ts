@@ -111,4 +111,13 @@ export class KaryawanService {
       .groupBy('karyawan.jenis_kelamin')
       .getRawMany();
   }
+
+  async countByCity(): Promise<{ kota: string; total: number }[]> {
+    return await this.karyawanRepo
+      .createQueryBuilder('karyawan')
+      .select('karyawan.kota', 'kota')
+      .addSelect('COUNT(*)', 'total')
+      .groupBy('karyawan.kota')
+      .getRawMany();
+  }
 }

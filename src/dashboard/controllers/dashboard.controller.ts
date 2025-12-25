@@ -20,4 +20,12 @@ export class DashboardController {
   async byGender(): Promise<{ jenis_kelamin: string; total: number }[]> {
     return await this.karyawanService.countByGender();
   }
+
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @Get('by-city')
+  async byCity(): Promise<{ kota: string; total: number }[]> {
+    return await this.karyawanService.countByCity();
+  }
 }
