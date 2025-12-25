@@ -44,7 +44,7 @@ export class ResponseKaryawanDatatableDto {
   @IsOptional()
   @IsDate()
   @Expose()
-  tanggal_lahir?: Date;
+  tanggal_lahir: Date;
 
   @ApiPropertyOptional()
   @IsOptional()

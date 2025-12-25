@@ -38,6 +38,7 @@ export class CreateKaryawanDto {
   })
   @IsDate()
   @IsOptional()
+  @Transform(({ value }) => new Date(value))
   tanggal_lahir?: Date;
 
   @ApiProperty({

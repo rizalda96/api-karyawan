@@ -54,7 +54,7 @@ export class KaryawanEntity {
   @Column({
     type: 'date',
     name: 'tanggal_lahir',
-    nullable: true,
+    nullable: false,
   })
   tanggal_lahir: Date;
 

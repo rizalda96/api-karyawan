@@ -28,4 +28,12 @@ export class DashboardController {
   async byCity(): Promise<{ kota: string; total: number }[]> {
     return await this.karyawanService.countByCity();
   }
+
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @Get('by-year-date')
+  async byYearDate(): Promise<{ year: string; total: number }[]> {
+    return await this.karyawanService.countByYearDate();
+  }
 }

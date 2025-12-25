@@ -49,6 +49,7 @@ export class KaryawanService {
         alamat: true,
         jenis_kelamin: true,
         kota: true,
+        tanggal_lahir: true,
         created_at: true,
       },
       where: whereClause,
@@ -71,6 +72,7 @@ export class KaryawanService {
       alamat: dto.alamat,
       jenis_kelamin: dto.jenis_kelamin,
       kota: dto.kota,
+      tanggal_lahir: dto.tanggal_lahir,
     });
     await this.karyawanRepo.save(payload);
   }
@@ -91,6 +93,7 @@ export class KaryawanService {
       alamat: dto.alamat ?? karyawan.alamat,
       jenis_kelamin: dto.jenis_kelamin ?? karyawan.jenis_kelamin,
       kota: dto.kota ?? karyawan.kota,
+      tanggal_lahir: dto.tanggal_lahir ?? karyawan.tanggal_lahir,
     });
 
     await this.karyawanRepo.save(payload);
@@ -118,6 +121,15 @@ export class KaryawanService {
       .select('karyawan.kota', 'kota')
       .addSelect('COUNT(*)', 'total')
       .groupBy('karyawan.kota')
+      .getRawMany();
+  }
+
+  async countByYearDate(): Promise<{ year: string; total: number }[]> {
+    return await this.karyawanRepo
+      .createQueryBuilder('karyawan')
+      .select('YEAR(karyawan.tanggal_lahir)', 'year')
+      .addSelect('COUNT(*)', 'total')
+      .groupBy('karyawan.tanggal_lahir')
       .getRawMany();
   }
 }
