@@ -1,5 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 import {
+  IsDate,
   IsEmail,
   IsIn,
   IsNotEmpty,
@@ -30,6 +32,21 @@ export class CreateKaryawanDto {
   @IsNotEmpty()
   @IsIn(['Laki-laki', 'Perempuan'])
   jenis_kelamin: string;
+
+  @ApiPropertyOptional({
+    example: '1995-01-01',
+  })
+  @IsDate()
+  @IsOptional()
+  tanggal_lahir?: Date;
+
+  @ApiProperty({
+    example: 'bandung',
+  })
+  @IsString()
+  @Transform(({ value }) => value.toUpperCase() as string)
+  @IsNotEmpty()
+  kota: string;
 
   @ApiPropertyOptional({
     example: '08123456789',

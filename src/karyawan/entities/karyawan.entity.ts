@@ -45,6 +45,20 @@ export class KaryawanEntity {
   alamat: string;
 
   @Column({
+    type: 'varchar',
+    name: 'kota',
+    nullable: false,
+  })
+  kota: string;
+
+  @Column({
+    type: 'date',
+    name: 'tanggal_lahir',
+    nullable: true,
+  })
+  tanggal_lahir: Date;
+
+  @Column({
     type: 'enum',
     name: 'jenis_kelamin',
     nullable: false,

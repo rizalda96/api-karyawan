@@ -30,6 +30,7 @@ export class KaryawanService {
       'phone',
       'alamat',
       'jenis_kelamin',
+      'kota',
     ];
 
     let whereClause: Array<object> | undefined = undefined;
@@ -47,6 +48,7 @@ export class KaryawanService {
         phone: true,
         alamat: true,
         jenis_kelamin: true,
+        kota: true,
         created_at: true,
       },
       where: whereClause,
@@ -68,6 +70,7 @@ export class KaryawanService {
       phone: dto.phone,
       alamat: dto.alamat,
       jenis_kelamin: dto.jenis_kelamin,
+      kota: dto.kota,
     });
     await this.karyawanRepo.save(payload);
   }
@@ -87,6 +90,7 @@ export class KaryawanService {
       phone: dto.phone ?? karyawan.phone,
       alamat: dto.alamat ?? karyawan.alamat,
       jenis_kelamin: dto.jenis_kelamin ?? karyawan.jenis_kelamin,
+      kota: dto.kota ?? karyawan.kota,
     });
 
     await this.karyawanRepo.save(payload);

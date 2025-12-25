@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 import {
+  IsDate,
   IsEmail,
   IsNotEmpty,
   IsOptional,
@@ -32,6 +33,18 @@ export class ResponseKaryawanDatatableDto {
   @IsString()
   @Expose()
   jenis_kelamin: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  @Expose()
+  kota: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsDate()
+  @Expose()
+  tanggal_lahir?: Date;
 
   @ApiPropertyOptional()
   @IsOptional()
