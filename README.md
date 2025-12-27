@@ -7,7 +7,7 @@
 
 # Penjelasan Arsitektur
 ## Project Architecture Overview
-Project ini menggunakan Nest js, dan Nodemailer untuk mengirim pesan email. dan juga di lengkapi dengan bcryt untuk hashing password
+Project ini menggunakan Nest js, Nodemailer untuk mengirim pesan email, dan juga di lengkapi dengan bcryt untuk hashing password
 
 
 
