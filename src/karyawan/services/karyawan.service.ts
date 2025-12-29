@@ -128,8 +128,8 @@ export class KaryawanService {
     return await this.karyawanRepo
       .createQueryBuilder('karyawan')
       .select('YEAR(karyawan.tanggal_lahir)', 'year')
-      .addSelect('COUNT(*)', 'total')
-      .groupBy('karyawan.tanggal_lahir')
+      .addSelect('COUNT(YEAR(karyawan.tanggal_lahir))', 'total')
+      .groupBy('YEAR(karyawan.tanggal_lahir)')
       .getRawMany();
   }
 }
